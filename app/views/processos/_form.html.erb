@@ -3,6 +3,7 @@
     <div class="col-md-8">
 
       <%= simple_form_for @processo do |f| %>
+        <%= f.error_notification %>
         <%= f.input :sei, label:"Número SEI" %>
         <%= f.input :objeto, as: :text, label:"Objeto da contratação" %>
         <%= f.input :demandante, label:"Área demandante", collection: Processo::DEMANDANTE, prompt: "Selecione" %>
