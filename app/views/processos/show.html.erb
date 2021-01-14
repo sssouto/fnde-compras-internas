@@ -1,2 +1,42 @@
-<h1>Processos#show</h1>
-<p>Find me in app/views/processos/show.html.erb</p>
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Processo <%= @processo.sei %></h1>
+      <br>
+      <div class="row">
+        <div class="column">
+          <p><strong>Objeto:</strong> <%= @processo.objeto %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p><strong>Demandante:</strong> <%= @processo.demandante %></p>
+        </div>
+        <div class="column">
+          <p><strong>Tipo de contratação:</strong> <%= @processo.tipo_contratacao %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p><strong>Data de cadastramento:</strong> <%= @processo.created_at.strftime("%d/%m/%Y") %></p>
+        </div>
+        <div class="column">
+          <p><strong>Fase atual:</strong> <%= @processo.fase %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p><strong>Última atualização:</strong> <%= @processo.updated_at.strftime("%d/%m/%Y") %></p>
+        </div>
+        <div class="column">
+          <p><strong>Tempo em tramitação:</strong> <%= time_ago_in_words(@processo.created_at) %></p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <%= link_to 'Listar processos <i class="fas fa-list"></i>'.html_safe, processos_path, class: "btn btn-primary" %>
+        <%= link_to 'Editar processo <i class="fas fa-edit"></i>'.html_safe, edit_processo_path(@processo), class: "btn btn-primary"%>
+        <%= link_to 'Novo processo <i class="fas fa-plus-square"></i>'.html_safe, new_processo_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
