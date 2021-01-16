@@ -2,6 +2,7 @@ class ProcessosController < ApplicationController
   before_action :set_processo, only: %i[show edit update]
 
   def index
+    @processos = Processo.all
   end
 
   def show
@@ -36,6 +37,6 @@ class ProcessosController < ApplicationController
   end
 
   def processo_params
-    params.require(:processo).permit(:sei, :objeto, :demandante, :tipo_contratacao, :fase)
+    params.require(:processo).permit(:sei, :objeto, :demandante, :tipo_contratacao, :fase, :data_inicio)
   end
 end

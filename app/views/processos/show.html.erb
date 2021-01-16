@@ -1,40 +1,53 @@
 <div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <h1>Processo <%= @processo.sei %></h1>
+      <div class="d-flex justify-content-between">
+        <h2>Processo <%= @processo.sei %></h2>
+        <div>
+          <%= link_to 'Editar processo <i class="fas fa-edit"></i>'.html_safe, edit_processo_path(@processo), class: "btn btn-primary"%>
+        </div>
+      </div>
       <br>
-      <div class="row">
-        <div class="column">
-          <p><strong>Objeto:</strong> <%= @processo.objeto %></p>
-        </div>
+      <div>
+        <p><strong>Objeto:</strong> <%= @processo.objeto %></p>
       </div>
-      <div class="row">
-        <div class="column">
-          <p><strong>Demandante:</strong> <%= @processo.demandante %></p>
-        </div>
-        <div class="column">
-          <p><strong>Tipo de contratação:</strong> <%= @processo.tipo_contratacao %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
-          <p><strong>Data de cadastramento:</strong> <%= @processo.created_at.strftime("%d/%m/%Y") %></p>
-        </div>
-        <div class="column">
-          <p><strong>Fase atual:</strong> <%= @processo.fase %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
-          <p><strong>Última atualização:</strong> <%= @processo.updated_at.strftime("%d/%m/%Y") %></p>
-        </div>
-        <div class="column">
-          <p><strong>Tempo em tramitação:</strong> <%= time_ago_in_words(@processo.created_at) %></p>
-        </div>
-      </div>
+      
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Demandante</th>
+            <th scope="col">Tipo de contratação</th>
+            <th scope="col">Data de início do processo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @processo.demandante %></td>
+            <td><%= @processo.tipo_contratacao %></td>
+            <td><%= @processo.data_inicio.strftime("%d/%m/%Y") %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Fase atual</th>
+            <th scope="col">Última atualização</th>
+            <th scope="col">Tempo em tramitação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @processo.fase %></td>
+            <td><%= @processo.updated_at.strftime("%d/%m/%Y") %></td>
+            <td><%= time_ago_in_words(@processo.created_at) %></td>
+          </tr>
+        </tbody>
+      </table>
+      
       <div class="d-flex justify-content-around">
         <%= link_to 'Listar processos <i class="fas fa-list"></i>'.html_safe, processos_path, class: "btn btn-primary" %>
-        <%= link_to 'Editar processo <i class="fas fa-edit"></i>'.html_safe, edit_processo_path(@processo), class: "btn btn-primary"%>
         <%= link_to 'Novo processo <i class="fas fa-plus-square"></i>'.html_safe, new_processo_path, class: "btn btn-primary" %>
       </div>
     </div>

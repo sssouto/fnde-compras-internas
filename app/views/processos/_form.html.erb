@@ -8,6 +8,7 @@
         <%= f.input :objeto, as: :text, label:"Objeto da contratação" %>
         <%= f.input :demandante, label:"Área demandante", collection: Processo::DEMANDANTE, prompt: "Selecione" %>
         <%= f.input :tipo_contratacao, label:"Tipo de contratação", collection: Processo::TIPO, prompt: "Selecione" %>
+        <%= f.input :data_inicio, as: :date, html5: true, label:"Data de início do processo" %>
         <%= f.input :fase, label:"Fase do processo", collection: Processo::FASE, prompt: "Selecione" %>
         <%= f.button :submit, "Salvar", class: 'btn btn-primary' %>
       <% end %>

@@ -1,2 +1,44 @@
-<h1>Processos#index</h1>
-<p>Find me in app/views/processos/index.html.erb</p>
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between">
+        <h1>Processos</h1>
+        <div>
+          <%= link_to 'Novo processo <i class="fas fa-plus-square"></i>'.html_safe, new_processo_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+      <br>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="align-middle" scope="col">Processo</th>
+            <th class="align-middle" scope="col">Objeto</th>
+            <th class="align-middle" scope="col">Demandante</th>
+            <th class="align-middle" scope="col">Tipo de contratação</th>
+            <th class="align-middle" scope="col">Data de início do processo</th>
+            <th class="align-middle" scope="col">Fase atual</th>
+            <th class="align-middle" scope="col">Última atualização</th>
+            <th class="align-middle" scope="col">Tempo em tramitação</th>
+            <th class="align-middle" scope="col">Detalhar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @processos.each do |processo| %>
+            <tr>
+            <td><%= processo.sei %></td>
+            <td><%= processo.objeto %></td>
+            <td><%= processo.demandante %></td>
+            <td><%= processo.tipo_contratacao %></td>
+            <td><%= processo.data_inicio.strftime("%d/%m/%Y") %></td>
+            <td><%= processo.fase %></td>
+            <td><%= processo.updated_at.strftime("%d/%m/%Y") %></td>
+            <td><%= time_ago_in_words(processo.created_at) %></td>
+            <td><%= link_to '<i class="fas fa-search"></i>'.html_safe, processo_path(processo), class: "btn btn-primary"%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
