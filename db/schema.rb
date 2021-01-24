@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_194355) do
+ActiveRecord::Schema.define(version: 2021_01_24_193839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
     t.integer "item_numero"
-    t.integer "item_pac"
     t.string "numero_catalogo"
     t.string "descricao_sucinta"
     t.string "grupo_despesa"
@@ -36,10 +35,18 @@ ActiveRecord::Schema.define(version: 2021_01_16_194355) do
     t.date "data_prevista"
     t.date "data_contratada"
     t.string "situacao"
-    t.bigint "processo_id", null: false
+    t.bigint "processo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "pac_id", null: false
+    t.index ["pac_id"], name: "index_items_on_pac_id"
     t.index ["processo_id"], name: "index_items_on_processo_id"
+  end
+
+  create_table "pacs", force: :cascade do |t|
+    t.integer "ano"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "processos", force: :cascade do |t|
@@ -65,5 +72,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_194355) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "pacs"
   add_foreign_key "items", "processos"
 end

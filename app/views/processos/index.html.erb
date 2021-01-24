@@ -32,7 +32,7 @@
             <td><%= processo.data_inicio.strftime("%d/%m/%Y") %></td>
             <td><%= processo.fase %></td>
             <td><%= processo.updated_at.strftime("%d/%m/%Y") %></td>
-            <td><%= time_ago_in_words(processo.created_at) %></td>
+            <td><%= time_ago_in_words(processo.data_inicio) %></td>
             <td><%= link_to '<i class="fas fa-search"></i>'.html_safe, processo_path(processo), class: "btn btn-primary"%></td>
             </tr>
           <% end %>
