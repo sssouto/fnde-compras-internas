@@ -10,43 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_24_193839) do
+ActiveRecord::Schema.define(version: 2021_01_25_022041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.integer "item_numero"
-    t.string "numero_catalogo"
-    t.string "descricao_sucinta"
+    t.integer "numero_item"
+    t.string "codigo_item"
+    t.string "descricao_sucinta_objeto"
     t.string "grupo_despesa"
     t.string "nome_grupo"
-    t.string "prioridade"
-    t.string "renovacao"
+    t.string "grau_prioridade"
+    t.string "renovacao_contrato"
     t.string "acao_orcamentaria"
-    t.float "quantidade_prevista"
+    t.float "quantidade_estimava"
     t.float "quantidade_contratada"
-    t.string "unidade_medida"
-    t.float "valor_unit_previsto"
+    t.string "unidade_fornecimento"
+    t.float "valor_unitario_estimado"
     t.float "valor_unit_contratado"
-    t.float "valor_total_previsto"
+    t.float "valor_total_estimado"
     t.float "valor_total_contratado"
     t.string "unidade_responsavel"
-    t.date "data_prevista"
+    t.date "data_desejada_contratacao"
     t.date "data_contratada"
     t.string "situacao"
     t.bigint "processo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "pac_id", null: false
-    t.index ["pac_id"], name: "index_items_on_pac_id"
+    t.integer "ano_plano"
     t.index ["processo_id"], name: "index_items_on_processo_id"
-  end
-
-  create_table "pacs", force: :cascade do |t|
-    t.integer "ano"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "processos", force: :cascade do |t|
@@ -72,6 +65,5 @@ ActiveRecord::Schema.define(version: 2021_01_24_193839) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "items", "pacs"
   add_foreign_key "items", "processos"
 end
